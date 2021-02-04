@@ -19,7 +19,6 @@ blocks:
       jobs:
         - name: Benchmark
           commands:
-            - '- java '
             - '- jar target/spring-pipeline-demo.jar > /dev/null & '
             - '# Wait for the spring boot application to boot '
             - '- sleep 999 '
@@ -28,7 +27,6 @@ blocks:
             - '- mvn jmeter:results'
         - name: 'Job #2'
           commands:
-            - '- java '
             - '- jar target/spring-pipeline-demo.jar > /dev/null & '
             - '# Wait for the spring boot application to boot '
             - '- sleep 999 '
@@ -37,7 +35,6 @@ blocks:
             - '- mvn jmeter:results'
         - name: 'Job #3'
           commands:
-            - '- java '
             - '- jar target/spring-pipeline-demo.jar > /dev/null & '
             - '# Wait for the spring boot application to boot '
             - '- sleep 999 '
